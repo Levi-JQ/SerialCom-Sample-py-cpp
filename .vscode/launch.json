@@ -1,0 +1,47 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+    {
+        "name": "gdb调试",// 配置名称，将会在启动配置的下拉菜单中显示 
+        "type": "cppdbg",// 配置类型，这里只能为cppdbg 
+        "request": "launch",// 请求配置类型，可以为launch（启动）或attach（附加）
+        "program": "${fileDirname}/${fileBasenameNoExtension}",// 将要进行调试的程序的路径,${fileBasenameNoExtension}是当前文件的除去拓展名之后的文件名
+        "args": [],// 程序调试时传递给程序的命令行参数，一般设为空即可 
+        "stopAtEntry": false,// 设为true时程序将暂停在程序入口处，一般设置为false
+        "cwd": "${fileDirname}",// 调试程序时的工作目录，一般为${fileDirname}即代码所在目录
+        "environment": [],
+        "externalConsole": false,// 调试时是否显示控制台窗口（本机设置为true时加载不出来debug模式）
+        "MIMode": "gdb",
+        "miDebuggerPath": "/usr/bin/gdb",
+      // miDebugger的路径，注意这里要与自己的MinGw的路径对应 
+        "preLaunchTask": "C/C++: g++ 生成活动文件", // 调试会话开始前执行的任务，与tasks.json定义的任务label相同
+        "setupCommands": [
+            {
+                "description": "为 gdb 启用整齐打印",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description":  "将反汇编风格设置为 Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            }
+        ]
+    },
+        
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [],
+            //"preLaunchTask": "C/C++: g++ 生成动态链接库",
+            "justMyCode": true
+        }
+    ]
+}
